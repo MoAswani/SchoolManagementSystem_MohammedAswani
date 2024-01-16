@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MOHAMMED || NKSS</title>
+  <style type="text/css">
+    body {
+      color: #aa082e;
+      background-color: #b6bde7;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+  </style>
+
+</head>
+
+
+<body>
+  {% include "navbar.html" %}
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+
+
+  <!--- signup page for teacher by admin(sumit)  ---------->
+  <form method="post" action="teachersignup" name="teachersignup">
+    {% csrf_token %}
+    <div class="container register-form">
+      <div class="form">
+        <div class="note">
+          <p>Teacher Signup Form </p>
+        </div>
+
+        <div class="form-content">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" placeholder="First Name" name="first_name" class="form-control" pattern="[A-Za-z]+" required>
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="Last Name" name="last_name" class="form-control" pattern="[A-Za-z]+" required>
+              </div>
+              <div class="form-group">
+                <input type="number" placeholder="ID No." name="id_number" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="TSC No." name="tsc_number" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type="tel" placeholder="Phone Number" name="phone_number" class="form-control" minlength="10" maxlength="13" pattern="[0-9]+" required>
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Email" name="email" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="Address" name="address" class="form-control" required>
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" placeholder="Username" name="username" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type="password" placeholder="Password" name="password1" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type="password" placeholder="Confirm Password" name="password2" class="form-control" required>
+              </div>
+
+            </div>
+          </div>
+          <button type="submit" class="btnSubmit">Submit</button>
+          <div class="text-center">Already have an account? <a href="teacherlogin">Login here</a></div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+
+  {% include "footer.html" %}
+</body>
+
+</html>

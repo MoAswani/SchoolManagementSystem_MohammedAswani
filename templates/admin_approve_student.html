@@ -1,0 +1,81 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+
+<head>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 50px;
+    }
+  </style>
+
+</head>
+
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h6 class="panel-title">Pending Student Applications</h6>
+
+      </div>
+
+      <table class="table table-hover" id="dev-table">
+
+        <thead>
+
+          <tr>
+            <th>Student Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Former School</th>
+            <th>KCPE Marks</th>
+            <th>KCPE Index</th>
+            <th>Class Applied</th>
+            <th>Parent Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Approve</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        {% for s in pendingstudents %}
+        <tr>
+          <td> {{s.student_first_name}} {{s.student_last_name}}</td>
+          <td>{{s.student_age}}</td>
+          <td>{{s.student_gender}}</td>
+          <td>{{s.student_former_primary}}</td>
+          <td>{{s.student_KCSE_marks}}</td>
+          <td>{{s.student_index_no}}</td>
+          <td>{{s.student_class}}</td>
+          <td>{{s.parent_first_name}} {{s.parent_last_name}}</td>
+          <td>{{s.parent_phone_number}}</td>
+          <td>{{s.parent_email}}</td>
+          <td><a class="btn btn-primary btn-xs" href="{% url 'approve_pending_student' s.parent_username  %}"><span class="glyphicon glyphicon-ok"></span></a></td>
+          <td><a class="btn btn-danger btn-xs" href="{% url 'delete_pending_student' s.parent_username  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+
+        {% endfor %}
+      </table>
+    </div>
+
+
+  </div>
+</div>
+
+{% endblock content %}

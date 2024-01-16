@@ -1,0 +1,142 @@
+{% extends 'teacherbase.html' %}
+{% block content %}
+
+<head>
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+  </style>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<form method="post">
+  {% csrf_token %}
+  <div class="container register-form">
+    <div class="form">
+      <div class="note">
+        <p>Upload Student Results</p>
+      </div>
+      <div class="form-content">
+        {% for student in students%}
+        <strong><p>Results for: {{student.student_first_name}} {{student.student_last_name}}</p></strong>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type = "number" placeholder="Mathematics" class="form-control" name="mathematics" required>
+            </div>
+            <div class="form-group">
+              <input type = "number" placeholder="English" name="english" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <input type = "number" placeholder="Kiswahili" name="kiswahili" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <input type = "number" placeholder="Chemistry" name="chemistry" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type = "number" placeholder="Mean Marks" name="mean" class="form-control" required readonly>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <input type = "number" placeholder="Physics" name="physics" class="form-control" required>
+              </div>
+            <div class="form-group">
+                <input type = "number" placeholder="Geography" name="geography" class="form-control" required>
+              </div>
+            <div class="form-group">
+             <input type = "number" placeholder="Business Studies" name="business" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <input type = "number" placeholder="French" name="french" class="form-control" required>
+            </div> 
+            <div class="form-group">
+                <input type = "text" placeholder="Grade" name="grade" class="form-control" required readonly>
+              </div>           
+          </div>
+        </div>
+        {%endfor%}
+        <script>
+          // Function to calculate and fill in the mean marks
+          function calculateMeanAndGrade() {
+            var mathematics = parseFloat(document.getElementsByName("mathematics")[0].value) || 0;
+            var english = parseFloat(document.getElementsByName("english")[0].value) || 0;
+            var kiswahili = parseFloat(document.getElementsByName("kiswahili")[0].value) || 0;
+            var chemistry = parseFloat(document.getElementsByName("chemistry")[0].value) || 0;
+            var physics = parseFloat(document.getElementsByName("physics")[0].value) || 0;
+            var geography = parseFloat(document.getElementsByName("geography")[0].value) || 0;
+            var business = parseFloat(document.getElementsByName("business")[0].value) || 0;
+            var french = parseFloat(document.getElementsByName("french")[0].value) || 0;
+      
+            var mean = (mathematics + english + kiswahili + chemistry + physics + geography + business + french) / 8;
+            // Update the mean field
+            document.getElementsByName("mean")[0].value = mean.toFixed(2);
+
+            var grade;
+            if (mean >= 70) {
+              grade = "A";
+            }
+            else if (mean >= 60) {
+              grade = "B";
+            }
+            else if (mean >= 50) {
+              grade = "C";
+            }
+            else if (mean >= 40) {
+              grade = "D";
+            }
+            else {
+              grade = "F";
+            }
+                    
+            // Update the grade field
+            document.getElementsByName("grade")[0].value = grade;
+          }
+      
+          // Attach the calculateMeanAngGrade function to the input event of input fields
+          var inputFields = document.querySelectorAll('[name="mathematics"], [name="english"], [name="kiswahili"], [name="chemistry"], [name="physics"], [name="geography"], [name="business"], [name="french"]');
+          inputFields.forEach(function(inputField) {
+            inputField.addEventListener('input', calculateMeanAndGrade);
+          });
+        </script>
+        <button type="submit" class="btnSubmit">Upload</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock content %}

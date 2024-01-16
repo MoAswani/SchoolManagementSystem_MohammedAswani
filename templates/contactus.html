@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>MOHAMMED || NKSS</title>
+<style>
+  .row {
+    display: flex; /* Use flexbox to create a horizontal layout */
+    justify-content: space-between; 
+    /*background-color: lightcyan;*/
+  }
+
+  .contactform {
+    flex: 1; /* Take up 50% of the available space, pushing .contactinfo to the right */
+    padding: 10px; 
+    margin: 20px; 
+  }
+
+  .contactinfo {
+    flex: 1; 
+    padding: 10px; 
+    margin: 20px; 
+    text-align: left;
+  }
+  .contactinfo p {
+    text-align: left;
+  }
+
+  .contactform input , .contactform textarea {
+    width: 100%; 
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
+  .contactform button {
+    background-color: blue; 
+    color: white; 
+    padding: 10px; 
+    border: none; 
+  }
+</style>
+
+
+</head>
+
+<body>
+
+  {% include "navbar.html" %}
+  <br><br>
+
+   <center>
+    <h3 class='alert alert-success' style="margin-top:35px;">Send Us Your Valuable Feedback !</h3>
+    <p>Do you have other questions? Don't worry, there aren't any dumb questions. 
+      Just fill out the form below <br>and we'll get back to you as soon as possible.</p>
+    <p>
+    </center>
+    <div class="row">
+      <div class="contactform">
+        <form method = "post" action="contactus">
+          {% csrf_token %}
+          <input type="text" id="name" name="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required=""> <br><br>
+          <input type="email" id="mail" name="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email"><br><br>
+          <input type="text" id="subject" name="subject" placeholder="Subject" required=""><br><br>
+          <textarea name="message" id="message" placeholder="Your Message" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject"></textarea><br><br>
+          <button type="submit" value="Send Message">SEND MESSAGE</button>
+        </form>
+      </div>
+      <div class="contactinfo">
+        <p >Let's get in  touch, our support desk shall respond to any of your inquiries during our working days and hours.
+          Just send us your questions or concerns by starting a new case and we will give you the help you need.Continuous 
+          support to our students is guaranteed this will help them with their current interest and naturing them, The future
+          demands an increase for self-directed children who can adapt and learn quickly, think critically, communicate
+          and innovate. </p>
+          <br>
+        <a href="tel:+254 722 497 984">+254 722 497 984</a> <br>
+        <a href="/contactus">info@nkaimurunya.ac.ke</a>
+        <br><br>
+        <p>Ongata Rongai | Opposite Nakeel; Stadium<br>P.O.BOX: 15577-00503 Mbagathi</p>
+      </div>
+    </div>
+
+    <iframe
+      width="100%"       
+      height="500"
+      frameborder="0"
+      style="border:0"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.650668380828!2d36.74463077388624!3d-1.3862078986006912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f05b72be3a031%3A0x1e5cf5b19dbf6f76!2sNkaimurunya%20Mixed%20Day%20Secondary%20School!5e0!3m2!1sen!2ske!4v1698306412818!5m2!1sen!2ske"
+      allowfullscreen></iframe>
+
+      
+  {% include "footer.html" %}
+</body>
+
+</html>

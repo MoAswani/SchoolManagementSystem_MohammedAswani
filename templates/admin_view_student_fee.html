@@ -1,0 +1,60 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+
+<head>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+
+</head>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h6 class="panel-title">Students Fees</h6>
+      </div>
+
+      <table class="table table-hover" id="dev-table">
+        <thead>
+
+          <tr>
+            <th>Student Name</th>
+            <th>Registration</th>
+            <th>Class</th>
+            <th>Fee</th>
+
+          </tr>
+        </thead>
+        {% for s in students %}
+        <tr>
+          <td> {{s.student_first_name}} {{s.student_last_name}}</td>
+          <td>{{s.registration_number}}</td>
+          <td>{{s.student_class}}</td>
+          <td>{{s.student_fee_balance}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

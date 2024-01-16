@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MOHAMMED || NKSS</title>
+  <style type="text/css">
+    body {
+      color: #aa082e;
+      background-color: #b6bde7;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+
+    .theme1{
+      color: aqua;
+    }
+  </style>
+  
+
+</head>
+
+
+<body>
+  {% include "navbar.html" %}
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+
+
+  <!--- signup page for parent---------->
+  <form method="post" action="parentsignup">
+    {% csrf_token %}
+    <div class="container register-form">
+      <div class="form">
+        <div class="note">
+          <p>New Admission To School</p>
+        </div>
+
+        <div class="form-content">
+          <div class="row">
+            <div class="col-md-6">
+              <legend><span class ="theme1">Student Information</span></legend>
+              <div class="form-group">
+                <input type = "text" placeholder="First Name" name="student_first_name" class="form-control" pattern="[A-Za-z]+" required>
+              </div>
+              <div class="form-group">
+                <input type = "text" placeholder="Last Name" name="student_last_name" class="form-control" pattern="[A-Za-z]+" required>
+              </div>
+              <div class="form-group">
+                <label>Date of Birth</label>
+                <input type = "date" id = "dob" name="dob" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type ="number" id = "age" placeholder="Age" readonly name="age" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Gender:</label>
+                    <input type="radio" name="gender" value="male" id="male" required><label for="male">Male</label><br>
+                    &ensp;  &ensp; &ensp; &ensp; &ensp; 
+                    <input type="radio" name="gender" value="female" id="female"><label for="female">Female</label>
+                    
+              </div>
+              
+              <div class="form-group">
+                <input type = "text" placeholder="Former School" name="former_primary" class="form-control" required>
+              </div>  
+              <div class="form-group">
+                <input type = "number" placeholder="Index Number" name="student_index_number" class="form-control" required>
+              </div>
+             
+              <div class="form-group">
+                <input type = "number" placeholder="KCPE Marks" name="kcpe_marks" class="form-control" max="499" required>
+              </div>
+              <div class="form-group">
+                <label for="class applying for">Class Applying for</label>
+                <select id="class_to_apply" name="class_to_apply" class="form-control" required>
+                  <option value="" disabled selected hidden>Select class you are applying</option>
+                  <option value="Form One">Form One</option>
+                  <option value="Form Two">Form Two</option>
+                  <option value="Form Three">Form Three</option>
+                  <option value="Form Four">Form Four</option>
+                </select>
+              </div>
+
+              <!--Javascript to autofill the age-->
+
+              <script>
+                document.getElementById("dob").addEventListener("change", function() {
+                  const dob = new Date(this.value);
+                  const today = new Date();
+                  const age = today.getFullYear() - dob.getFullYear();
+                  document.getElementById("age").value = age;
+                });
+                </script>
+              <!--end of script-->
+
+            </div>
+            <div class="col-md-6">
+              <legend><span class ="theme1">Parent/Gurdian Information</span></legend>
+              <div class="form-group">
+                <input type = "text" placeholder="First Name" name="parent_first_name" class="form-control" pattern="[A-Za-z]+" required>
+              </div>
+              <div class="form-group">
+                <input type = "text" placeholder="Last Name" name="parent_last_name" class="form-control" pattern="[A-Za-z]+" required>
+              </div>
+              <div class="form-group">
+                <input type = "number" placeholder="ID No." name="id_number" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type = "tel" placeholder="Phone Number" name="phone_number" class="form-control" minlength="10" maxlength="13" pattern="[0-9]+" required>
+              </div>
+              <div class="form-group">
+                <input type = "email" placeholder="Email" name="email" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type = "text" placeholder="Address" name="address" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type = "text" placeholder="Username" name="username" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type = "password" placeholder="Password" name="password1" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type = "password" placeholder="Confirm Password" name="password2" class="form-control" required>
+              </div>
+
+            </div>
+          </div>
+          <button type="submit" class="btnSubmit">Take Admission</button>
+          <div class="text-center">Already have an account? <a href="parentlogin">Login here</a></div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+
+
+  {% include "footer.html" %}
+</body>
+
+</html>

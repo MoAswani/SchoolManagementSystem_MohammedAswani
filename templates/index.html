@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>MOHAMMED || NKSS</title>
+
+  <style media="screen">
+    .jumbotron {
+      margin-top: 0px;
+      background-image: url('{% static "images/nkaimurunya.jpg"%}');
+      margin-bottom: 0px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 600px;
+    }
+
+    .jumbotron h1 {
+      text-align: center;
+    }
+    .mymarquee{
+      width: 75%;
+      direction: left;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+      animation: marquee 2s linear infinite;
+    }
+
+    .alert {
+      margin: 0px;
+    }
+
+
+
+    .glow {
+      font-size: 60px;
+      color: blue;
+      text-align: center;
+      -webkit-animation: glow 1s ease-in-out infinite alternate;
+      -moz-animation: glow 1s ease-in-out infinite alternate;
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+
+    @-webkit-keyframes glow {
+      from {
+        text-shadow: 0 0 10px #eeeeee, 0 0 20px #000000, 0 0 30px #000000, 0 0 40px #000000, 0 0 50px #9554b3, 0 0 60px #9554b3, 0 0 70px #9554b3;
+      }
+
+      to {
+        text-shadow: 0 0 20px #eeeeee, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  {% include "navbar.html" %}
+  <br>
+  
+  <div class="jumbotron" style="margin-bottom: 0px;margin-top: 0px;  ">
+    <br>
+    <h1 class="display-4 glow">Welcome To Nkaimurunya Secondary School</h1>
+
+    <br>
+    <marquee class="mymarquee"> <strong><h2 style="color: black;" >Your bright future is our mission.</h2></strong></marquee>
+    <br><br>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="/parentsignup" role="button">New Student Application</a>
+    </p>
+    <br><br>
+  </div>
+
+  <!--{% include "admin_teacher_student_card.html" %}-->
+    
+
+  {% include "footer.html" %}
+</body>
+
+</html>

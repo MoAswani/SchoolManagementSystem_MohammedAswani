@@ -1,0 +1,147 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+
+<head>
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+  </style>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<form method="post" action="admin_add_student">
+  {% csrf_token %}
+  <div class="container register-form">
+    <div class="form">
+      <div class="note">
+        <p>Add New student to School</p>
+      </div>
+
+      <div class="form-content">
+        <div class="row">
+          <div class="col-md-6">
+            <legend><span class ="theme1">Student Information</span></legend>
+            <div class="form-group">
+              <input type = "text" placeholder="First Name" class="form-control" name="student_first_name" pattern="[A-Za-z]+" required>
+            </div>
+            <div class="form-group">
+              <input type = "text" placeholder="Last Name" name="student_last_name" class="form-control" pattern="[A-Za-z]+" required>
+            </div>
+            <div class="form-group">
+              <label>Date of Birth</label>
+              <input type = "date" id = "dob" name="dob" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input type ="number" id = "age" placeholder="Age" class="form-control" readonly name="age">
+            </div>
+            <div class="form-group">
+              <label>Gender:</label>
+                  <input type="radio" name="gender" value="male" id="male"required><label for="male">Male</label><br>
+                  &ensp;  &ensp; &ensp; &ensp; &ensp; 
+                  <input type="radio" name="gender" value="female" id="female"><label for="female">Female</label>
+                  
+            </div>
+            
+            <div class="form-group">
+              <input type = "text" placeholder="Former School" name="former_school" class="form-control" required>
+            </div>  
+       
+            <div class="form-group">
+              <label for="class to Admit">Class to Admit</label>
+              <select id="class_to_admit" name="class_to_admit" class="form-control" required>
+                <option value="" disabled selected hidden>Select class to admit Student</option>
+                <option value="Form One">Form One</option>
+                <option value="Form Two">Form Two</option>
+                <option value="Form Three">Form Three</option>
+                <option value="Form Four">Form Four</option>
+              </select>
+            </div>
+          
+            <!--Javascript to autofill the date of birth-->
+            <script>
+              document.getElementById("dob").addEventListener("change", function() {
+                const dob = new Date(this.value);
+                const today = new Date();
+                const age = today.getFullYear() - dob.getFullYear();
+                document.getElementById("age").value = age;
+              });
+              </script>
+            <!--end of script-->
+
+          </div>
+          <div class="col-md-6">
+            <legend><span class ="theme1">Parent/Gurdian Information</span></legend>
+            <div class="form-group">
+              <input type = "text" placeholder="First Name" name="parent_first_name" class="form-control" pattern="[A-Za-z]+" required>
+            </div>
+            <div class="form-group">
+              <input type = "text" placeholder="Last Name" name="parent_last_name" class="form-control" pattern="[A-Za-z]+" required>
+            </div>
+            <div class="form-group">
+              <input type ="number" placeholder="ID No." name="id_number" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input type = "tel" placeholder="Phone Number" name="phone_number" class="form-control" minlength="10" maxlength="13" pattern="[0-9]+" required>
+            </div>
+            <div class="form-group">
+              <input type = "email" placeholder="Email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input type = "text" placeholder="Address" name="address" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input type = "text" placeholder="Username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input type = "password" placeholder="Password" name="password1" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input type = "password" placeholder="Confirm Password" name="password2" class="form-control" required>
+            </div>
+
+          </div>
+        </div>
+        <button type="submit" class="btnSubmit">Admit</button>
+       
+      </div>
+    </div>
+  </div>
+
+</form>
+
+{% endblock content %}

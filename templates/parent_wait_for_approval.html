@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MOHAMMED || NKSS</title>
+
+
+  <style media="screen">
+    .jumbotron {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    .jumbotron h1 {
+      text-align: center;
+    }
+
+    .alert {
+      margin: 0px;
+    }
+  </style>
+
+</head>
+
+<body>
+  {% include "navbar.html" %}
+  <br>
+  <br>
+
+  <div class="jumbotron" style="margin-top: 0px;
+    margin-bottom: 0px;">
+    <h1 class="display-4">Hello {{parent_first_name}}</h1>
+    <p class="lead">Your Addmission request has been received <br><br>Our Team is checking your details <br><br> Soon your admission will be confirmed !!!</p>
+    <hr class="my-4">
+    <p>NKSS: Your Child's bright future is our mission</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="/homeclick" role="button">Logout For Now</a>
+    </p>
+  </div>
+
+  {% include "footer.html" %}
+</body>
+
+</html>
